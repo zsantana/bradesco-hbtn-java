@@ -14,7 +14,7 @@ public class Livro extends Produto {
 
     @Override
     public double obterPrecoLiquido() {
-        return precoBruto * 1.1; // 10% de imposto
+        return precoBruto * 1.15; // 10% de imposto
     }
 }
 

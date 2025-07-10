@@ -14,7 +14,7 @@ public class Dvd extends Produto {
     
     @Override
     public double obterPrecoLiquido() {
-        return precoBruto * 1.2; // 20% de imposto
+        return precoBruto * 1.20; // 20% de imposto
     }
 }
     
