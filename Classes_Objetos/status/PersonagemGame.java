@@ -4,8 +4,12 @@ public class PersonagemGame {
         private String nome;
         private String status;
 
+        public PersonagemGame(){
+              this.status = "morto"; 
+        }
+
         public void tomarDano ( int quantidadeDeDano){
-                this.saudeAtual += quantidadeDeDano;
+                this.saudeAtual -= quantidadeDeDano;
                 if (this.saudeAtual < 0) this.saudeAtual = 0;
                 atualizarStatus();
         }
@@ -17,7 +21,7 @@ public class PersonagemGame {
         }
 
         private void atualizarStatus() {
-                this.status = this.saudeAtual >= 0 ? "vivo" : "morto";
+                this.status = this.saudeAtual == 0 ? "morto" : "vivo";
         }
 
         public String getStatus() {
