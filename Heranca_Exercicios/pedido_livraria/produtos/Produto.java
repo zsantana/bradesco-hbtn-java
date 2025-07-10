@@ -1,3 +1,4 @@
+package produtos;
 
 public abstract class Produto {
 
@@ -14,4 +15,8 @@ public abstract class Produto {
      }
     
         public abstract double obterPrecoLiquido();
+
+      public String getTitulo() {
+            return titulo;
+        }
 }
