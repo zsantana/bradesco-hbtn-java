@@ -1,3 +1,8 @@
+
+
+import produtos.Livro;
+import produtos.Produto;
+
 public class Pedido {
 
     private double percentualDesconto;
@@ -36,7 +41,7 @@ public class Pedido {
                 String tipo = (produto instanceof Livro) ? "Livro" : "Dvd";
                 
                 System.out.printf("Tipo: %s  Titulo: %s  Preco: %.2f  Quant: %d  Total: %.2f%n",
-                                tipo, item.getProduto().titulo, precoLiquido, item.getQuantidade(), totalItem);
+                                tipo, produto.getTitulo(), precoLiquido, item.getQuantidade(), totalItem);
             }
         }
         
