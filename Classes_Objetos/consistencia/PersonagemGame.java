@@ -8,7 +8,11 @@ public class PersonagemGame {
               this.status = "morto"; 
         }
 
-       
+        public PersonagemGame(int saudeAtual, String nome){
+                this.status = "vivo"; 
+                this.saudeAtual = saudeAtual;
+                this.nome = nome;
+        }
 
         public void tomarDano ( int quantidadeDeDano){
                 this.saudeAtual -= quantidadeDeDano;
@@ -42,7 +46,9 @@ public class PersonagemGame {
                 return nome;
         }
         public void setNome(String nome) {
-                this.nome = nome;
+                if (nome != null && !nome.isBlank()) {
+                         this.nome = nome;
+                }
         }
 
 }
