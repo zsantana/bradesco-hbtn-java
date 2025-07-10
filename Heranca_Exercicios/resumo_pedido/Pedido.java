@@ -21,7 +21,7 @@ public class Pedido {
 
 
     public void apresentarResumoPedido() {
-        System.out.println("-------- RESUMO PEDIDO -------");
+        System.out.println("------- RESUMO PEDIDO -------");
         
         double totalProdutos = 0;
         
@@ -35,12 +35,12 @@ public class Pedido {
                 
                 String tipo = (produto instanceof Livro) ? "Livro" : "Dvd";
                 
-                System.out.printf("Tipo: %s  Título: %s  Preço: %.2f  Quant: %d  Total: %.2f%n",
+                System.out.printf("Tipo: %s  Titulo: %s  Preco: %.2f  Quant: %d  Total: %.2f%n",
                                 tipo, item.getProduto().titulo, precoLiquido, item.getQuantidade(), totalItem);
             }
         }
         
-        System.out.println("---------------------------");
+        System.out.println("----------------------------");
         
         // Calcular desconto em valor
         double valorDesconto = totalProdutos * (percentualDesconto / 100);
@@ -48,8 +48,8 @@ public class Pedido {
         
         System.out.printf("DESCONTO: %.2f%n", valorDesconto);
         System.out.printf("TOTAL PRODUTOS: %.2f%n", totalProdutos);
-        System.out.println("---------------------------");
+        System.out.println("----------------------------");
         System.out.printf("TOTAL PEDIDO: %.2f%n", totalFinal);
-        System.out.println("---------------------------");
+        System.out.println("----------------------------");
     }
 }
