@@ -3,6 +3,8 @@ public class Gerente extends Empregado {
     private double BONUS_BASE = 0.20;
     private double BONUS_ADICIONAL = 0.01;
 
+
+
     public Gerente(double salarioFixo) {
             super(salarioFixo);
     }
@@ -13,9 +15,7 @@ public class Gerente extends Empregado {
         if (departamento.alcancouMeta()){
             
             var valorBonus = salarioFixo * BONUS_BASE;
-            this.salarioFixo = this.salarioFixo + (valorBonus);
-
-            var valorDiff = departamento.getValorAtingidoMeta() - departamento.getValorMeta();
+            var valorDiff =  departamento.getValorAtingidoMeta() - departamento.getValorMeta();
             var valorBonusAdicional = valorDiff * BONUS_ADICIONAL;
 
             return valorBonus + valorBonusAdicional;

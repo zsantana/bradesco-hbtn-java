@@ -1,7 +1,6 @@
 public class Empregado {
 
     protected double salarioFixo;
-    protected double valorBonus = 0;
 
     public Empregado(double salarioFixo){
         this.salarioFixo = salarioFixo;
@@ -10,16 +9,20 @@ public class Empregado {
 
     public double calcularBonus(Departamento departamento){
 
+        double valorBonus = 0;
+
         if (departamento.alcancouMeta()){
             valorBonus = (salarioFixo * 0.10);
-            salarioFixo = salarioFixo + (valorBonus); 
         }
 
         return valorBonus;
     }
 
     public double calcularSalarioTotal(Departamento departamento){
+
+        var valorBonus = calcularBonus(departamento);
         return (salarioFixo + valorBonus);
+        
     }
 
     public double getSalarioFixo() {
