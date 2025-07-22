@@ -49,13 +49,18 @@ public class Estoque {
     }
 
     private int gerarNovoId() {
-        int maior = 0;
+        // Encontra o menor ID disponível
+        Set<Integer> idsUsados = new HashSet<>();
         for (Produto p : produtos) {
-            if (p.getId() > maior) {
-                maior = p.getId();
-            }
+            idsUsados.add(p.getId());
         }
-        return maior + 1;
+        
+        // Procura o menor ID disponível começando de 1
+        int id = 1;
+        while (idsUsados.contains(id)) {
+            id++;
+        }
+        return id;
     }
 
     public void adicionarProduto(String nome, int quantidade, double preco) {
@@ -67,7 +72,7 @@ public class Estoque {
         Produto novo = new Produto(id, nome, quantidade, preco);
         produtos.add(novo);
         salvarProdutos();
-        System.out.println("Produto adicionado com ID: " + id);
+        // System.out.println("Produto adicionado com ID: " + id);
     }
 
     public void excluirProduto(int id) {
@@ -83,7 +88,7 @@ public class Estoque {
         }
         if (removido) {
             salvarProdutos();
-            System.out.println("Produto removido.");
+            // System.out.println("Produto removido.");
         } else {
             System.out.println("Produto não encontrado.");
         }
@@ -114,7 +119,7 @@ public class Estoque {
         }
         if (encontrado) {
             salvarProdutos();
-            System.out.println("Quantidade atualizada.");
+            // System.out.println("Quantidade atualizada.");
         } else {
             System.out.println("Produto não encontrado.");
         }
