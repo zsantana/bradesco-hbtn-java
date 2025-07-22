@@ -49,18 +49,13 @@ public class Estoque {
     }
 
     private int gerarNovoId() {
-        // Encontra o menor ID disponível
-        Set<Integer> idsUsados = new HashSet<>();
+        int maior = 0;
         for (Produto p : produtos) {
-            idsUsados.add(p.getId());
+            if (p.getId() > maior) {
+                maior = p.getId();
+            }
         }
-        
-        // Procura o menor ID disponível começando de 1
-        int id = 1;
-        while (idsUsados.contains(id)) {
-            id++;
-        }
-        return id;
+        return maior + 1;
     }
 
     public void adicionarProduto(String nome, int quantidade, double preco) {
