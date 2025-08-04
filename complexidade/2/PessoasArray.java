@@ -17,7 +17,6 @@ public class PessoasArray {
         this.nomes = nomes;
     }
 
-    // Implementação da busca binária
     public void buscaBinaria(String nome) {
         System.out.println("Procurando o nome: \"" + nome + "\"");
         int inicio = 0;
