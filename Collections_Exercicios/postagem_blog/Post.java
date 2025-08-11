@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class Post implements Comparable<Post> {
     private Autor autor;
     private String titulo;
@@ -29,28 +27,26 @@ public class Post implements Comparable<Post> {
         return categoria;
     }
 
-    // Para identificar posts duplicados: MESMO AUTOR E MESMO TÍTULO
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Post post = (Post) o;
-        return Objects.equals(autor, post.autor) &&
-               Objects.equals(titulo, post.titulo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(autor, titulo);
-    }
-
     @Override
     public String toString() {
         return titulo;
     }
 
     @Override
-    public int compareTo(Post o) {
-        return this.titulo.compareTo(o.titulo);
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Post p = (Post) obj;
+        return autor.equals(p.autor) && titulo.equals(p.titulo);
+    }
+
+    @Override
+    public int hashCode() {
+        return autor.hashCode() * 31 + titulo.hashCode();
+    }
+
+    @Override
+    public int compareTo(Post outro) {
+        return this.titulo.compareTo(outro.titulo);
     }
 }

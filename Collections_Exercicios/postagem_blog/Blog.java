@@ -4,64 +4,61 @@ public class Blog {
     private Set<Post> posts;
 
     public Blog() {
-        this.posts = new LinkedHashSet<>();
+        this.posts = new HashSet<>();
     }
 
     public void adicionarPostagem(Post post) {
-        if (!posts.add(post)) {
+        if (posts.contains(post)) {
             throw new IllegalArgumentException("Postagem jah existente");
         }
+        posts.add(post);
     }
 
     public Set<Autor> obterTodosAutores() {
-        Set<Autor> autores = new TreeSet<>();
-        for (Post post : posts) {
-            autores.add(post.getAutor());
-        }
-        return autores;
+        return new TreeSet<>(
+            posts.stream().map(Post::getAutor).toList()
+        );
     }
 
     public Map<Categorias, Integer> obterContagemPorCategoria() {
-        Map<Categorias, Integer> contagem = new LinkedHashMap<>();
-        for (Post post : posts) {
-            contagem.put(post.getCategoria(),
-                contagem.getOrDefault(post.getCategoria(), 0) + 1);
+        EnumMap<Categorias, Integer> contagem = new EnumMap<>(Categorias.class);
+        for (Post p : posts) {
+            contagem.put(p.getCategoria(), contagem.getOrDefault(p.getCategoria(), 0) + 1);
         }
         return contagem;
     }
 
     public Set<Post> obterPostsPorAutor(Autor autor) {
-        Set<Post> resultado = new TreeSet<>();
-        for (Post post : posts) {
-            if (post.getAutor().equals(autor)) {
-                resultado.add(post);
-            }
+        Set<Post> result = new TreeSet<>();
+        for (Post p : posts) {
+            if (p.getAutor().equals(autor)) result.add(p);
         }
-        return resultado;
+        return result;
     }
 
     public Set<Post> obterPostsPorCategoria(Categorias categoria) {
-        Set<Post> resultado = new TreeSet<>();
-        for (Post post : posts) {
-            if (post.getCategoria() == categoria) {
-                resultado.add(post);
-            }
+        Set<Post> result = new TreeSet<>();
+        for (Post p : posts) {
+            if (p.getCategoria() == categoria) result.add(p);
         }
-        return resultado;
+        return result;
     }
 
     public Map<Categorias, Set<Post>> obterTodosPostsPorCategorias() {
-        Map<Categorias, Set<Post>> map = new LinkedHashMap<>();
-        for (Post post : posts) {
-            map.computeIfAbsent(post.getCategoria(), k -> new TreeSet<>()).add(post);
+        EnumMap<Categorias, Set<Post>> map = new EnumMap<>(Categorias.class);
+        for (Categorias cat : Categorias.values())
+            map.put(cat, new TreeSet<>());
+
+        for (Post p : posts) {
+            map.get(p.getCategoria()).add(p);
         }
         return map;
     }
 
     public Map<Autor, Set<Post>> obterTodosPostsPorAutor() {
-        Map<Autor, Set<Post>> map = new LinkedHashMap<>();
-        for (Post post : posts) {
-            map.computeIfAbsent(post.getAutor(), k -> new TreeSet<>()).add(post);
+        TreeMap<Autor, Set<Post>> map = new TreeMap<>();
+        for (Post p : posts) {
+            map.computeIfAbsent(p.getAutor(), k -> new TreeSet<>()).add(p);
         }
         return map;
     }

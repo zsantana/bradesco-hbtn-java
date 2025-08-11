@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class Autor implements Comparable<Autor> {
     private String nome;
     private String sobrenome;
@@ -22,24 +20,23 @@ public class Autor implements Comparable<Autor> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Autor autor = (Autor) o;
-        return Objects.equals(nome, autor.nome)
-            && Objects.equals(sobrenome, autor.sobrenome);
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Autor autor = (Autor) obj;
+        return nome.equals(autor.nome) && sobrenome.equals(autor.sobrenome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, sobrenome);
+        return nome.hashCode() * 31 + sobrenome.hashCode();
     }
 
     @Override
-    public int compareTo(Autor o) {
-        int cmp = this.nome.compareTo(o.nome);
+    public int compareTo(Autor outro) {
+        int cmp = this.nome.compareTo(outro.nome);
         if (cmp == 0) {
-            return this.sobrenome.compareTo(o.sobrenome);
+            return this.sobrenome.compareTo(outro.sobrenome);
         }
         return cmp;
     }
