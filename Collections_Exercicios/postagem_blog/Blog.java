@@ -4,7 +4,7 @@ public class Blog {
     private Set<Post> posts;
 
     public Blog() {
-        this.posts = new HashSet<>();
+        this.posts = new LinkedHashSet<>();
     }
 
     public void adicionarPostagem(Post post) {
