@@ -22,6 +22,6 @@ public class Pessoa {
     @Override
     public String toString() {
         // Formata o salário com 6 casas decimais e vírgula
-        return String.format(Locale.US, "[%d] %s %s %d R$ %.6f", codigo, nome, cargo, idade, salario);
+        return String.format(Locale.US, "[%d] %s %s %d R$ %.6f", codigo, nome, cargo, idade, salario).replace('.', ',');
     }
 }
