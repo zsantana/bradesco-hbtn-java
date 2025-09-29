@@ -1,6 +1,4 @@
-import java.util.*;
-
-public class Pessoa  {
+public class Pessoa implements Comparable<Pessoa> {
     private int codigo;
     private String nome;
     private String cargo;
@@ -15,6 +13,17 @@ public class Pessoa  {
         this.salario = salario;
     }
 
+    @Override
+    public int compareTo(Pessoa outra) {
+        int cmp = Integer.compare(this.idade, outra.idade); // menor idade primeiro
+        if(cmp == 0) {
+            cmp = Double.compare(outra.salario, this.salario); // maior salário primeiro
+        }
+        if(cmp == 0) {
+            cmp = Integer.compare(this.codigo, outra.codigo); // menor código primeiro
+        }
+        return cmp;
+    }
 
     @Override
     public String toString() {
