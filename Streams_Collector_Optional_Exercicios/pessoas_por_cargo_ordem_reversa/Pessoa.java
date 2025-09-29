@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Pessoa implements Comparable<Pessoa> {
+public class Pessoa  {
     private int codigo;
     private String nome;
     private String cargo;
@@ -15,10 +15,6 @@ public class Pessoa implements Comparable<Pessoa> {
         this.salario = salario;
     }
 
-    @Override
-    public int compareTo(Pessoa outra) {
-        return Integer.compare(this.codigo, outra.codigo);
-    }
 
     @Override
     public String toString() {
