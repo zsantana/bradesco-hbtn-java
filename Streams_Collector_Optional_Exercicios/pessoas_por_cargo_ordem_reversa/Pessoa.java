@@ -1,3 +1,4 @@
+
 public class Pessoa implements Comparable<Pessoa> {
     private int codigo;
     private String nome;
@@ -13,25 +14,28 @@ public class Pessoa implements Comparable<Pessoa> {
         this.salario = salario;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+
     @Override
     public int compareTo(Pessoa outra) {
-        int cmp = Integer.compare(this.idade, outra.idade); // menor idade primeiro
-        if(cmp == 0) {
-            cmp = Double.compare(outra.salario, this.salario); // maior salário primeiro
+        // Maior idade primeiro
+        int cmp = Integer.compare(outra.idade, this.idade);
+        // Se idade igual: maior salário primeiro
+        if (cmp == 0) {
+            cmp = Double.compare(outra.salario, this.salario);
         }
-        if(cmp == 0) {
-            cmp = Integer.compare(this.codigo, outra.codigo); // menor código primeiro
+        // Se salário igual: menor código primeiro
+        if (cmp == 0) {
+            cmp = Integer.compare(this.codigo, outra.codigo);
         }
         return cmp;
     }
 
     @Override
     public String toString() {
-        String s = String.format("[%d] %s %s %d R$ %.6f", codigo, nome, cargo, idade, salario);
-        return s.replace(".", ",");
-    }
-
-    public String getCargo() {
-        return cargo;
+        // [<codigo>] <nome> <cargo> <idade> R$ <salario>
+        return String.format("[%d] %s %s %d R$ %.6f", codigo, nome, cargo, idade, salario).replace(".", ",");
     }
 }
