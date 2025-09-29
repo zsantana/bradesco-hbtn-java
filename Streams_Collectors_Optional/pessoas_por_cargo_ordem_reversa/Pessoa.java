@@ -17,10 +17,7 @@ public class Pessoa implements Comparable<Pessoa> {
 
     @Override
     public int compareTo(Pessoa outra) {
-        int comp = Double.compare(outra.salario, this.salario); // decrescente
-        if (comp == 0)
-            comp = Integer.compare(this.codigo, outra.codigo); // crescente
-        return comp;
+        return Integer.compare(this.codigo, outra.codigo);
     }
 
     @Override
