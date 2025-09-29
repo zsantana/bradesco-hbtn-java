@@ -17,16 +17,18 @@ public class Pessoa implements Comparable<Pessoa> {
 
     @Override
     public int compareTo(Pessoa outra) {
-        // Ordena por codigo
-        return Integer.compare(this.codigo, outra.codigo);
+        int comp = Double.compare(outra.salario, this.salario); // decrescente
+        if (comp == 0)
+            comp = Integer.compare(this.codigo, outra.codigo); // crescente
+        return comp;
     }
 
     @Override
     public String toString() {
-        return String.format("[%d] %s %s %d R$ %.6f", codigo, nome, cargo, idade, salario);
+        String s = String.format("[%d] %s %s %d R$ %.6f", codigo, nome, cargo, idade, salario);
+        return s.replace(".", ",");
     }
 
-    // Getters
     public String getCargo() {
         return cargo;
     }
