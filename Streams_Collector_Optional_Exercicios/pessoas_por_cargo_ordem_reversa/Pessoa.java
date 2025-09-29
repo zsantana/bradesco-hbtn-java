@@ -20,22 +20,20 @@ public class Pessoa implements Comparable<Pessoa> {
 
     @Override
     public int compareTo(Pessoa outra) {
-        // Maior idade primeiro
-        int cmp = Integer.compare(outra.idade, this.idade);
-        // Se idade igual: maior salário primeiro
-        if (cmp == 0) {
-            cmp = Double.compare(outra.salario, this.salario);
+        // ordem: maior idade, maior salário, menor código
+        int cmp = Integer.compare(outra.idade, this.idade); // DECRESCENTE
+        if(cmp == 0) {
+            cmp = Double.compare(outra.salario, this.salario); // DECRESCENTE
         }
-        // Se salário igual: menor código primeiro
-        if (cmp == 0) {
-            cmp = Integer.compare(this.codigo, outra.codigo);
+        if(cmp == 0) {
+            cmp = Integer.compare(this.codigo, outra.codigo); // CRESCENTE
         }
         return cmp;
     }
 
     @Override
     public String toString() {
-        // [<codigo>] <nome> <cargo> <idade> R$ <salario>
         return String.format("[%d] %s %s %d R$ %.6f", codigo, nome, cargo, idade, salario).replace(".", ",");
     }
 }
+
